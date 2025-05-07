@@ -4,7 +4,13 @@ import turtle
 def draw_tree(branch_length, left_angle, right_angle, reduction_factor, depth):
     if depth == 0 or branch_length < 1:
         return
-
+# Set color and thickness by depth
+    turtle.pensize(depth)
+    if depth <= 2:
+        turtle.color("forest green")
+    else:
+        turtle.color("saddle brown")
+        
     turtle.forward(branch_length)
     
     # Save current state

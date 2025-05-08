@@ -68,34 +68,35 @@ if temp_ranges:
         for station in stations_with_max_range:
             f.write(f"{station}\n")
 
-# 3. Warmest and coolest stations by average temp
-average_by_station = {
-    station: sum(temps) / len(temps)
-    for station, temps in station_temps.items() if temps
-}
+# 3. Warmest and coolest stations by individual temperature readings
+max_temp = float('-inf')
+min_temp = float('inf')
+warmest_stations = set()
+coolest_stations = set()
 
-if average_by_station:
-    max_avg = max(average_by_station.values())
-    min_avg = min(average_by_station.values())
+for station, temps in station_temps.items():
+    if not temps:
+        continue
+    station_max = max(temps)
+    station_min = min(temps)
 
-    warmest_stations = [s for s, avg in average_by_station.items() if avg == max_avg]
-    coolest_stations = [s for s, avg in average_by_station.items() if avg == min_avg]
+    if station_max > max_temp:
+        max_temp = station_max
+        warmest_stations = {station}
+    elif station_max == max_temp:
+        warmest_stations.add(station)
+
+    if station_min < min_temp:
+        min_temp = station_min
+        coolest_stations = {station}
+    elif station_min == min_temp:
+        coolest_stations.add(station)
 
 with open("warmest_and_coolest_station.txt", "w") as f:
-    f.write("Warmest Station(s):\n")
+    f.write(f"Warmest Station(s) (based on highest recorded temp {max_temp:.2f}°C):\n")
     for s in warmest_stations:
-        f.write(f"{s} - Avg Temp: {max_avg:.2f}°C\n")
+        f.write(f"{s}\n")
 
-    f.write("\nCoolest Station(s):\n")
+    f.write(f"\nCoolest Station(s) (based on lowest recorded temp {min_temp:.2f}°C):\n")
     for s in coolest_stations:
-        f.write(f"{s} - Avg Temp: {min_avg:.2f}°C\n")
-
-
-
-print("Warmest Station(s):")
-for s in warmest_stations:
-    print(f"{s} - Avg Temp: {max_avg:.2f}°C")
-
-print("\nCoolest Station(s):")
-for s in coolest_stations:
-    print(f"{s} - Avg Temp: {min_avg:.2f}°C")
+        f.write(f"{s}\n")

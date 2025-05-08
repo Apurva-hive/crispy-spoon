@@ -1,0 +1,5 @@
+Warmest Station(s) (based on highest recorded temp 47.13°C):
+MARBLE-BAR
+
+Coolest Station(s) (based on lowest recorded temp 3.81°C):
+CABRAMURRA-SMHEA-AWS

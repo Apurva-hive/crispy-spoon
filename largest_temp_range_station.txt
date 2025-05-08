@@ -1,0 +1,3 @@
+Largest range: 24.45°C
+Station(s):
+BOURKE-AIRPORT-AWS

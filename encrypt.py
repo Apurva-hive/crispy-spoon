@@ -72,5 +72,5 @@ def decryption(val1, val2):
     decrypt_write_file.close()
 
 
-if name == "main":
+if __name__ == "__main__":
     main()

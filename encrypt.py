@@ -1,5 +1,5 @@
 def main():
-    #only accept integers
+    #only accept integers as the input to maintain the validation
     inp1 = int(input("enter first number for encryption: "))
     inp2 = int(input("enter second number for encryption: "))
     encryption(inp1,inp2)
